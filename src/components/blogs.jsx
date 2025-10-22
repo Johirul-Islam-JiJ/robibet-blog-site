@@ -48,7 +48,7 @@ export default function Blogs() {
               </h1>
             </div>
           )}
-          <div className="flex flex-wrap  justify-between items-center w-full gap-4">
+          <div className="flex flex-wrap  justify-between lg:justify-start items-center w-full gap-4">
             {blogs?.map((blog) => (
               <BlogCard key={blog.id} blog={blog} />
             ))}

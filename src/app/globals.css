@@ -1,3 +1,5 @@
+@import url("https://fonts.cdnfonts.com/css/poppins");
+
 @import "tailwindcss";
 
 :root {
@@ -30,4 +32,5 @@ input {
 
 body {
   @apply bg-bg text-white;
+  font-family: "Poppins", sans-serif;
 }
