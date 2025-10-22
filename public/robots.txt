@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow any admin or private routes if you have them
+Disallow: /admin/
+Disallow: /dashboard/
+
+# Sitemap location
+Sitemap: https://www.robibet.com/sitemap.xml
