@@ -63,12 +63,12 @@ export default async function Page({ params }) {
           </div>
 
           <div className="flex justify-between items-center w-full">
-            <div className="px-4 py-2 bg-btn-bg rounded-md capitalize">
+            <div className="px-4 py-2 bg-gray-800 rounded-md capitalize">
               {blog.category}
             </div>
 
-            <div className="flex items-center gap-2 text-gray-500 text-sm">
-              <div className="px-4 py-2 bg-btn-bg rounded-md capitalize">
+            <div className="flex items-center gap-2 text-gray-300 text-sm">
+              <div className="px-4 py-2 bg-gray-800 rounded-md capitalize">
                 {date}
               </div>
             </div>
@@ -78,7 +78,7 @@ export default async function Page({ params }) {
         <div className="my-10 px-2 flex flex-col gap-5">
           <h1 className="text-2xl lg:text-4xl font-semibold">{blog.title}</h1>
           <div
-            className="prose max-w-none text-gray-700 leading-relaxed"
+            className="prose max-w-none  leading-relaxed"
             dangerouslySetInnerHTML={{ __html: blog.content }}
           />
         </div>

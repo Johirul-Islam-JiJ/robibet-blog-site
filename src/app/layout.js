@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-white w-full">
+      <body className="bg-bg w-full">
         <Header />
 
         <ToastContainer

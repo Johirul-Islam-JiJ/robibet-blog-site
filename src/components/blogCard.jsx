@@ -19,7 +19,7 @@ export default function BlogCard({ blog }) {
   };
 
   return (
-    <div className="w-full flex flex-col md:w-[45%] xl:w-[30%] h-[28rem]  bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <div className="w-full flex flex-col md:w-[45%] xl:w-[30%] h-[28rem]  bg-bg border border-gray-800 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div className="w-full h-56 overflow-hidden">
         <img
           src={imageUrl}
@@ -30,18 +30,18 @@ export default function BlogCard({ blog }) {
 
       <div className="p-5 flex flex-col gap-3 justify-between  flex-1">
         <div className="flex flex-col gap-2">
-          <p className="text-xs  mt-1 text-gray-500">{formattedDate}</p>
-          <h2 className="text-lg font-semibold text-gray-900 leading-snug line-clamp-2">
+          <p className="text-xs  mt-1 text-gray-300">{formattedDate}</p>
+          <h2 className="text-lg font-semibold  leading-snug line-clamp-2">
             {blog.title}
           </h2>
 
-          <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
+          <p className="text-sm text-gray-200 leading-relaxed line-clamp-3">
             {getExcerpt(blog.content)}
           </p>
         </div>
         <div className="flex justify-between items-center mt-2 ">
           <Link href={`/blog/${blog.id}`} className="">
-            <button className="text-sm text-blue-600 font-medium hover:underline !cursor-pointer">
+            <button className="text-sm text-secondary font-medium hover:underline !cursor-pointer">
               Read More →
             </button>
           </Link>

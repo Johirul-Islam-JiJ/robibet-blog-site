@@ -2,21 +2,28 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Link from "next/link";
+import Image from "next/image";
 const schema = yup.object({
   email: yup
     .string()
     .email("Please enter a valid email address")
     .required("Email is required"),
 });
+
+let links = [
+  {
+    link: "https://wa.me/2348123456789",
+    icon: FaWhatsapp,
+  },
+  {
+    link: "https://t.me/robibet",
+    icon: FaTelegramPlane,
+  },
+];
 
 export default function Footer() {
   const {
@@ -46,15 +53,24 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-white text-gray-600 border-t border-gray-200 px-6 sm:px-12 py-10 flex justify-center items-center">
+    <footer className="  border-t border-gray-800 px-6 sm:px-12 py-10 flex justify-center items-center">
       <div>
         <div className="max-w-7xl flex flex-wrap justify-between lg:flex-row gap-8">
           {/* About Section */}
           <div className="w-full lg:w-1/3">
-            <h2 className="flex items-center text-xl font-semibold text-gray-800 mb-2">
-              <span className="text-blue-600 text-2xl mr-1">∞</span> Robibet
-            </h2>
-            <p className="text-sm leading-relaxed text-gray-500">
+            <Link
+              href="/"
+              className="flex items-center space-x-1 text-xl font-semibold "
+            >
+              <Image
+                src="/logo.png"
+                alt="logo"
+                width={900}
+                height={900}
+                className="object-cover w-1/3 h-full "
+              />
+            </Link>
+            <p className="text-sm leading-relaxed ">
               Step into Robibet — the all-in-one destination for casino games,
               live dealers, and endless entertainment. Enjoy slots, blackjack,
               roulette, and more in a secure and dynamic environment designed
@@ -64,18 +80,18 @@ export default function Footer() {
 
           {/* Subscribe Section */}
           <div className="w-1/3">
-            <h3 className="font-semibold text-gray-800 mb-3">Subscribe</h3>
+            <h3 className="font-semibold text-gray-300 mb-3">Subscribe</h3>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
               <div className="flex">
                 <input
                   type="email"
                   placeholder="Enter your email"
                   {...register("email")}
-                  className="flex-1 p-2 border rounded-l-md border-gray-300 text-sm"
+                  className="flex-1 p-2 border rounded-l-md border-gray-800 text-sm"
                 />
                 <button
                   type="submit"
-                  className="bg-blue-600 text-white px-4 rounded-r-md hover:bg-blue-700 text-sm cursor-pointer"
+                  className="bg-secondary text-bg font-bold  px-4 rounded-r-md hover:bg-secondary text-sm cursor-pointer"
                 >
                   Subscribe
                 </button>
@@ -87,23 +103,21 @@ export default function Footer() {
 
             {/* Social Icons */}
             <div className="flex space-x-3 mt-4">
-              {[FaFacebookF, FaTwitter, FaLinkedinIn, FaWhatsapp].map(
-                (Icon, index) => (
-                  <a
-                    key={index}
-                    href="#"
-                    className="p-2 bg-gray-100 rounded-full hover:bg-blue-600 hover:text-white transition"
-                  >
-                    <Icon size={14} />
-                  </a>
-                )
-              )}
+              {links.map((Icon, index) => (
+                <a
+                  key={index}
+                  href={Icon.link}
+                  className="p-2 bg-gray-800 rounded-full hover:bg-secondary hover:text-bg transition"
+                >
+                  <Icon.icon size={14} />
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t mt-10 pt-4 text-center text-sm text-gray-500">
+        <div className="border-t mt-10 pt-4 text-center text-sm text-gray-300">
           © Copyright 2025 Robibet. All rights reserved.
         </div>
       </div>
