@@ -3,7 +3,7 @@ import Image from "next/image";
 
 // Fetch blog data
 const fetchBlog = async (slug) => {
-  const res = await fetch(`http://192.168.68.112:8000/api/blogs/${slug}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`, {
     cache: "no-store",
   });
   if (!res.ok) throw new Error("Failed to fetch blog");
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
       images: [
         {
           url: blog.image
-            ? `http://192.168.68.112:8000/storage/${blog.image}`
+            ? `${process.env.NEXT_PUBLIC_STORAGE_API_URL}/${blog.image}`
             : "/blogImage/blogImage.jpg",
           width: 1200,
           height: 630,
@@ -39,7 +39,7 @@ export default async function Page({ params }) {
   const blog = await fetchBlog(params.slug);
 
   const imageUrl = blog.image
-    ? `http://192.168.68.112:8000/storage/${blog.image}`
+    ? `${process.env.NEXT_PUBLIC_STORAGE_API_URL}/${blog.image}`
     : "/blogImage/blogImage.jpg";
 
   const date = new Date(blog.created_at).toLocaleDateString("en-US", {
@@ -63,12 +63,12 @@ export default async function Page({ params }) {
           </div>
 
           <div className="flex justify-between items-center w-full">
-            <div className="px-4 py-2 bg-btn-bg rounded-md capitalize">
+            <div className="px-4 py-2 bg-gray-800 rounded-md capitalize">
               {blog.category}
             </div>
 
-            <div className="flex items-center gap-2 text-gray-500 text-sm">
-              <div className="px-4 py-2 bg-btn-bg rounded-md capitalize">
+            <div className="flex items-center gap-2 text-gray-300 text-sm">
+              <div className="px-4 py-2 bg-gray-800 rounded-md capitalize">
                 {date}
               </div>
             </div>
@@ -78,7 +78,7 @@ export default async function Page({ params }) {
         <div className="my-10 px-2 flex flex-col gap-5">
           <h1 className="text-2xl lg:text-4xl font-semibold">{blog.title}</h1>
           <div
-            className="prose max-w-none text-gray-700 leading-relaxed"
+            className="prose max-w-none  leading-relaxed"
             dangerouslySetInnerHTML={{ __html: blog.content }}
           />
         </div>

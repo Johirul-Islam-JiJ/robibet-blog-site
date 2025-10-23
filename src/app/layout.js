@@ -1,7 +1,7 @@
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { ToastContainer } from "react-toastify";
+import ToastProvider from "@/components/ToastProvider";
 import "react-toastify/dist/ReactToastify.css"; // make sure this line exists
 export const metadata = {
   metadataBase: new URL("https://www.robibet.com"),
@@ -20,10 +20,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-white w-full">
+      <body className="bg-bg w-screen overflow-x-hidden ">
         <Header />
-
-        <ToastContainer
+        <ToastProvider />
+        {/* <ToastContainer
           position="top-right"
           autoClose={3000}
           hideProgressBar={false}
@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
           pauseOnHover
           draggable
           theme="dark"
-        />
+        /> */}
         {children}
         <Footer />
       </body>

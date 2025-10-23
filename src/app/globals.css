@@ -1,10 +1,12 @@
+@import url("https://fonts.cdnfonts.com/css/poppins");
+
 @import "tailwindcss";
 
 :root {
-  --background: rgb(254, 254, 254);
+  --background: #09101e;
   --foreground: #171717;
   --btn-bg-color: rgb(238, 242, 254);
-  --secondary-color: #2c61f5;
+  --secondary-color: rgba(197, 237, 0, 1);
 }
 
 @theme inline {
@@ -13,12 +15,12 @@
   --color-bg: var(--background);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 section {
   @apply max-w-7xl mx-auto px-4;
@@ -27,7 +29,8 @@ section {
 input {
   @apply outline-none py-2 px-4;
 }
-/* 
+
 body {
-  @apply bg-bg;
-} */
+  @apply bg-bg text-white;
+  font-family: "Poppins", sans-serif;
+}
