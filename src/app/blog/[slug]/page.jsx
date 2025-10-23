@@ -3,7 +3,7 @@ import Image from "next/image";
 
 // Fetch blog data
 const fetchBlog = async (slug) => {
-  const res = await fetch(`http://192.168.68.112:8000/api/blogs/${slug}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`, {
     cache: "no-store",
   });
   if (!res.ok) throw new Error("Failed to fetch blog");
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
       images: [
         {
           url: blog.image
-            ? `http://192.168.68.112:8000/storage/${blog.image}`
+            ? `${process.env.NEXT_PUBLIC_STORAGE_API_URL}/${blog.image}`
             : "/blogImage/blogImage.jpg",
           width: 1200,
           height: 630,
@@ -39,7 +39,7 @@ export default async function Page({ params }) {
   const blog = await fetchBlog(params.slug);
 
   const imageUrl = blog.image
-    ? `http://192.168.68.112:8000/storage/${blog.image}`
+    ? `${process.env.NEXT_PUBLIC_STORAGE_API_URL}/${blog.image}`
     : "/blogImage/blogImage.jpg";
 
   const date = new Date(blog.created_at).toLocaleDateString("en-US", {

@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import BlogCard from "./blogCard";
+
 // import FeatureCard from "./featureCard";
 export default function Blogs() {
   const [blogs, setBlogs] = useState([]);
@@ -11,7 +12,9 @@ export default function Blogs() {
     const fetchBlogs = async () => {
       try {
         // Replace with your real API endpoint
-        const response = await fetch("http://192.168.68.112:8000/api/blogs/");
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/blogs`
+        );
 
         if (!response.ok) {
           throw new Error("Failed to fetch blogs");
@@ -35,7 +38,7 @@ export default function Blogs() {
       <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row justify-center items-center lg:items-start gap-10 lg:gap-[5%]">
         <div className="flex flex-col justify-center items-center w-full  gap-[2rem] ">
           <div className="flex justify-between items-center w-full">
-            <h2 className="text-2xl font-semibold text-gray-400">
+            <h2 className="text-lg lg:text-2xl font-semibold text-gray-400">
               Whiteboards are remarkable.
             </h2>
             <span className="flex-1 h-[1px] bg-gray-600 hidden md:inline-block"></span>

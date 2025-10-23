@@ -8,16 +8,17 @@ export default function Hero() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const [isSearched, setIsSearched] = useState(false);
   const handleSearch = async () => {
     if (!searchTerm.trim()) return;
 
     setLoading(true);
     setError(null);
+    setIsSearched(false); // reset before new search
 
     try {
       const res = await fetch(
-        `http://192.168.68.112:8000/api/blogs?search=${encodeURIComponent(
+        `${process.env.NEXT_PUBLIC_API_URL}/blogs?search=${encodeURIComponent(
           searchTerm
         )}`
       );
@@ -26,10 +27,12 @@ export default function Hero() {
 
       const data = await res.json();
       setBlogs(data?.data || []);
+      setIsSearched(true); // ✅ mark search complete
       console.log("Search results:", data?.data);
     } catch (err) {
       console.error(err);
-      setError(err.message);
+      setError(err.message || "Something went wrong");
+      setIsSearched(true); // ✅ also mark as searched on error
     } finally {
       setLoading(false);
     }
@@ -76,7 +79,7 @@ export default function Hero() {
 
         {error && <p className="text-red-500 mt-2">{error}</p>}
 
-        {blogs.length > 0 && (
+        {blogs.length > 0 && isSearched ? (
           <div className="w-full mt-6 px-4 ">
             <div className="flex flex-wrap  justify-start items-center w-full gap-4 ">
               {blogs.map((blog) => (
@@ -84,7 +87,16 @@ export default function Hero() {
               ))}
             </div>
           </div>
-        )}
+        ) : blogs.length === 0 && isSearched ? (
+          <div>
+            {" "}
+            <div className="w-full h-[20vh] flex justify-center items-center">
+              <h1 className="text-2xl font-semibold text-gray-500">
+                No Blogs Found
+              </h1>
+            </div>
+          </div>
+        ) : null}
       </section>
     </div>
   );

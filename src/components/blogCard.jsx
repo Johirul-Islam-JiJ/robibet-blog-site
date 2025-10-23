@@ -9,9 +9,8 @@ export default function BlogCard({ blog }) {
   });
 
   const imageUrl = blog.image
-    ? `http://192.168.68.112:8000/storage/${blog.image}`
+    ? `${process.env.NEXT_PUBLIC_STORAGE_API_URL}/${blog.image}`
     : "/blogImage/blogImage2.jpg";
-  console.log(`http://192.168.68.112:8000/api/storage/${blog.image}`);
 
   const getExcerpt = (html) => {
     const text = html.replace(/<[^>]+>/g, "");
